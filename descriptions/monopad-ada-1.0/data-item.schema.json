@@ -1,0 +1,53 @@
+{
+  "$id": "dataItem",
+  "type": "object",
+  "properties": {
+    "provenance": {
+      "type": "array",
+      "items": { "$ref": "#/$defs/uuid" }
+    },
+    "labels": {
+      "type": "array",
+      "items": { "$ref": "#/$defs/label" }
+    },
+    "content": {
+      "type": "string",
+      "contentEncoding": "base64"
+    }
+  },
+  "$defs": {
+    "uuid": { 
+      "type": "string",
+      "pattern": "^[0-9a-fA-F]{8}(-[0-9a-fA-F]{4}){3}-[0-9a-fA-F]{12}$"
+    },
+    "property": { 
+      "type": "string",
+      "pattern": "^[a-zA-Z_][\\w\\.\\-]*$"
+    },
+    "description": { 
+      "type": "object",
+      "properties": {
+        "text": {
+          "type": "string"
+        },
+        "mime": {
+          "type": "string"
+        }
+      },
+      "required": ["text"]
+    },
+    "label": { 
+      "type": "object",
+      "properties": {
+        "name": {
+          "$ref": "#/$defs/property"
+        },
+        "description": {
+          "$ref": "#/$defs/description"
+        },
+        "value": {}
+      },
+      "required": ["name"]
+    }
+  }
+}
