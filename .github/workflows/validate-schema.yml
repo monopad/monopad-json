@@ -22,23 +22,23 @@ jobs:
          java -jar validator.jar \
            -input $GITHUB_WORKSPACE/descriptions/monopad-ada-1.0/data-item-sample-1.json \
            -schema $GITHUB_WORKSPACE/descriptions/monopad-ada-1.0/data-item.schema.json \
-           ; grep -q error report.0.csv ; test $? -ne 0
+           ; grep error report.0.csv ; test $? -ne 0
       - name: Validate data-item.schema.json through sample (2)
         run: |
          java -jar validator.jar \
            -input $GITHUB_WORKSPACE/descriptions/monopad-ada-1.0/data-item-sample-2.json \
            -schema $GITHUB_WORKSPACE/descriptions/monopad-ada-1.0/data-item.schema.json \
-           ; grep -q error report.0.csv ; test $? -ne 0
+           ; grep error report.0.csv ; test $? -ne 0
       - name: Validate data-item.schema.json through sample (empty)
         run: |
          java -jar validator.jar \
            -input $GITHUB_WORKSPACE/descriptions/monopad-ada-1.0/data-item-sample-empty.json \
            -schema $GITHUB_WORKSPACE/descriptions/monopad-ada-1.0/data-item.schema.json \
-           ; grep -q error report.0.csv ; test $? -ne 0
+           ; grep error report.0.csv ; test $? -ne 0
       - name: Validate data-item.schema.json through sample (invalid)
         run: |
          java -jar validator.jar \
            -input $GITHUB_WORKSPACE/descriptions/monopad-ada-1.0/data-item-sample-invalid.json \
            -schema $GITHUB_WORKSPACE/descriptions/monopad-ada-1.0/data-item.schema.json \
-           ; grep -q error report.0.csv ; test $? -eq 0
+           ; grep error report.0.csv ; test $? -eq 0
 
