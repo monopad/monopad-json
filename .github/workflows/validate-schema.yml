@@ -1,0 +1,25 @@
+name: validate-schema
+
+on:
+  push:
+    branches: [ main ]
+    
+jobs:
+  Validate-OpenAPI-Descriptions:
+    runs-on: ubuntu-latest
+    container:
+      image: texthtml/json-validator
+      options: --cpus 1
+    steps:
+      - uses: actions/checkout@v3 # checkout repo content
+      - name: Validate data-item.schema.json through sample (1)
+        run: validate-json $GITHUB_WORKSPACE/descriptions/monopad-ada-1.0/data-item-sample-1.json $GITHUB_WORKSPACE/descriptions/monopad-ada-1.0/data-item.schema.json
+      - name: Validate data-item.schema.json through sample (2)
+        run: validate-json $GITHUB_WORKSPACE/descriptions/monopad-ada-1.0/data-item-sample-2.json $GITHUB_WORKSPACE/descriptions/monopad-ada-1.0/data-item.schema.json
+      - name: Validate data-item.schema.json through sample (empty)
+        run: validate-json $GITHUB_WORKSPACE/descriptions/monopad-ada-1.0/data-item-sample-empty.json $GITHUB_WORKSPACE/descriptions/monopad-ada-1.0/data-item.schema.json
+      - name: Validate data-item.schema.json through sample (invalid)
+        run: |
+         validate-json $GITHUB_WORKSPACE/descriptions/monopad-ada-1.0/data-item-sample-invalid.json $GITHUB_WORKSPACE/descriptions/monopad-ada-1.0/data-item.schema.json
+         test $? -ne 0
+
